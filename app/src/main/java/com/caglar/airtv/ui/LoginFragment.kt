@@ -43,7 +43,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun performLogin() {
 
-        
+
         val client = OkHttpClient()
         val phonenum = editTextPhoneNum.text.toString()
         val password = editTextPassword.text.toString()

@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         editTextPhoneNum = findViewById(R.id.editTextPhoneNum)
         editTextPassword = findViewById(R.id.editTextPassword)
-
         val button = findViewById<Button>(R.id.button1)
         button.setOnClickListener {
             val fragment = LoginFragment()
