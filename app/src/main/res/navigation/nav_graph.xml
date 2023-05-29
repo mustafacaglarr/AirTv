@@ -18,5 +18,41 @@
         android:id="@+id/loginFragment"
         android:name="com.caglar.airtv.ui.LoginFragment"
         android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+        tools:layout="@layout/activity_main" >
+        <action
+            android:id="@+id/action_loginFragment_to_kaynakFragment"
+            app:destination="@id/kaynakFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kaynakFragment"
+        android:name="com.caglar.airtv.ui.KaynakFragment"
+        android:label="fragment_kaynak"
+        tools:layout="@layout/fragment_kaynak" >
+        <action
+            android:id="@+id/action_kaynakFragment_to_aramaFragment"
+            app:destination="@id/aramaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aramaFragment"
+        android:name="com.caglar.airtv.ui.AramaFragment"
+        android:label="fragment_arama"
+        tools:layout="@layout/fragment_arama" >
+        <action
+            android:id="@+id/action_aramaFragment_to_listeFragment"
+            app:destination="@id/listeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hesapFragment"
+        android:name="com.caglar.airtv.ui.HesapFragment"
+        android:label="fragment_hesap"
+        tools:layout="@layout/fragment_hesap" />
+    <fragment
+        android:id="@+id/listeFragment"
+        android:name="com.caglar.airtv.ui.ListeFragment"
+        android:label="fragment_liste"
+        tools:layout="@layout/fragment_liste" >
+        <action
+            android:id="@+id/action_listeFragment_to_hesapFragment"
+            app:destination="@id/hesapFragment" />
+    </fragment>
 </navigation>
