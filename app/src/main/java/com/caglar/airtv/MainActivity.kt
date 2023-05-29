@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import com.caglar.airtv.ui.KaynakFragment
 import com.caglar.airtv.ui.LoginFragment
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val fragment = KaynakFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
         editTextPhoneNum = findViewById(R.id.editTextPhoneNum)
         editTextPassword = findViewById(R.id.editTextPassword)
         val button = findViewById<Button>(R.id.button1)
@@ -57,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
-                        Log.i("Response","Recieved Response from server");
+                        Log.i("Response","Recieved Response from serverrrr");
                         response.use {
                             if (!response.isSuccessful){
                                 Log.e("HTTP Error","Something didn't load , or wasn't successful");
