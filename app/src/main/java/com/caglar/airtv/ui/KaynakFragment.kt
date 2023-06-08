@@ -1,11 +1,16 @@
 package com.caglar.airtv.ui
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.caglar.airtv.R
@@ -31,6 +36,8 @@ class KaynakFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_kaynak, container, false)
         recyclerView = view.findViewById(R.id.recyclerView)
+
+
         return view
     }
 

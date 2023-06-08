@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:paddingTop="8dp"
     android:layout_marginHorizontal="18dp"
-    android:layout_marginTop="65dp"
+    android:layout_marginTop="30dp"
 
     >
 
@@ -71,6 +71,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
                 app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+            <ImageButton
+                android:id="@+id/myImageButton"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/cardview_shadow_end_color"
+                android:src="@drawable/ic_add"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/textView1"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
