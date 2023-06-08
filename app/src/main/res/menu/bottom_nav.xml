@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Kaynaklar"
-        android:id="@+id/icon1"
+    <item
+        android:contentDescription="Kaynaklar"
+        android:title="Kaynaklar"
+        android:id="@+id/navigation_kaynak"
         android:icon="@drawable/icon1"
         />
-    <item android:title="Arama"
-        android:id="@+id/icon2"
+    <item
+        android:contentDescription="Arama"
+        android:title="Arama"
+        android:id="@+id/navigation_arama"
         android:icon="@drawable/icon2"
         />
-    <item android:title="Listelerim"
-        android:id="@+id/icon3"
+    <item
+        android:contentDescription="Listelerim"
+        android:title="Listelerim"
+        android:id="@+id/navigation_liste"
         android:icon="@drawable/icon3"
         />
-    <item android:title="Hesabım"
-        android:id="@+id/icon4"
+    <item
+        android:contentDescription="Hesabım"
+        android:title="Hesabım"
+        android:id="@+id/navigation_hesap"
         android:icon="@drawable/icon4"
         />
-
 </menu>
