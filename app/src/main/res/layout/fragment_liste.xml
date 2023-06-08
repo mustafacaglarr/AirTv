@@ -6,7 +6,7 @@
     android:id="@+id/framelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.KaynakFragment"
+    tools:context=".ui.ListeFragment"
     android:background="@drawable/background">
 
     <!-- TODO: Update blank fragment layout -->
