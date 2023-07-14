@@ -16,6 +16,15 @@
         <action
             android:id="@+id/action_firstFragment_to_kaynakFragment"
             app:destination="@id/kaynakFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_aramaFragment"
+            app:destination="@id/aramaFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_listeFragment"
+            app:destination="@id/listeFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_hesapFragment"
+            app:destination="@id/hesapFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"

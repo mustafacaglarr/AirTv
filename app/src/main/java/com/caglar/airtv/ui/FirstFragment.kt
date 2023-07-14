@@ -7,36 +7,56 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.caglar.airtv.R
-import com.google.android.material.button.MaterialButton
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class FirstFragment : Fragment(R.layout.fragment_first) {
-    private lateinit var navController: NavController
+    private lateinit var button1: Button
+    private lateinit var button2: Button
+    private lateinit var bottomNavigationView: BottomNavigationView
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_first, container, false)
+
+
         return view
+
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val navController = findNavController(view)
+
+        bottomNavigationView = requireActivity().findViewById(R.id.bottom_navigation)
+        bottomNavigationView.visibility = View.GONE
+
         val button1: Button = view.findViewById(R.id.button1)
         val button2: Button = view.findViewById(R.id.button2)
+
         button1.setOnClickListener {
-            navController.navigate(R.id.action_firstFragment_to_kaynakFragment)
+            // İlk butona tıklandığında yapılacak işlemler
+            val secondFragment = LoginFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer2, secondFragment)
+                .addToBackStack(null)
+                .commit()
         }
 
         button2.setOnClickListener {
-            navController.navigate(R.id.action_firstFragment_to_loginFragment)
+            // İkinci butona tıklandığında yapılacak işlemler
+            val thirdFragment = KaynakFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer2, thirdFragment)
+                .addToBackStack(null)
+                .commit()
+
+            val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)
+            bottomNavigationView?.visibility = View.VISIBLE
         }
     }
+
+
 
 }

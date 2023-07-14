@@ -66,4 +66,7 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
 
+    implementation 'com.google.android.exoplayer:exoplayer:2.19.0'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.19.0'
+
 }

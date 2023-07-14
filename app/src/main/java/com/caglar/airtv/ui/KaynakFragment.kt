@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.caglar.airtv.R
 import com.caglar.airtv.adapter.PackageAdapter
 import com.caglar.airtv.data.PackageData
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -28,7 +29,6 @@ class KaynakFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PackageAdapter
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,7 +37,6 @@ class KaynakFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_kaynak, container, false)
         recyclerView = view.findViewById(R.id.recyclerView)
 
-
         return view
     }
 
@@ -45,6 +44,9 @@ class KaynakFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         fetchPackages()
+
+
+
     }
 
     private fun setupRecyclerView() {
@@ -66,13 +68,17 @@ class KaynakFragment : Fragment() {
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 // Hata durumunda yapılacak işlemler
+                println("hataa")
             }
 
             override fun onResponse(call: Call, response: Response) {
                 val responseBody = response.body?.string()
                 val packageList = parsePackages(responseBody)
-                activity?.runOnUiThread {
+                if (packageList.isNotEmpty()) {
                     showPackages(packageList)
+                    println("Paket listesi dolu.")
+                } else {
+                    println("Paket listesi boş.")
                 }
             }
         })
