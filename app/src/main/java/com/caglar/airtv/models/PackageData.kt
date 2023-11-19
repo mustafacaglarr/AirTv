@@ -1,4 +1,4 @@
-package com.caglar.airtv.data
+package com.caglar.airtv.models
 
 data class PackageData(
     val packageId: Int,
@@ -6,5 +6,6 @@ data class PackageData(
     val isPrivate: Boolean,
     val packageDesc: String,
     val isPaidContent: Boolean,
-    val preview: String
+    val preview: String,
+    var isPaired: Boolean? = false
 )

@@ -1,73 +1,59 @@
-package com.caglar.airtv.ui
+package com.caglar.airtv.ui.login
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import com.caglar.airtv.ApiClass
+import com.caglar.airtv.Constants
+import com.caglar.airtv.MainActivity2
 import com.caglar.airtv.R
-import com.google.gson.Gson
-import okhttp3.*
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.RequestBody.Companion.toRequestBody
-import org.json.JSONObject
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import java.io.IOException
 
 
 class LoginFragment : Fragment() {
-    private val baseUrl = "https://airtvplayer.com/admin/api/"
-    private val registerUrl = "${baseUrl}register.php"
-    private val myIpUrl = "${baseUrl}myip.php"
     private lateinit var editTextPhoneNum: EditText
     private lateinit var editTextPassword: EditText
+    var mId: String = ""
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
         editTextPhoneNum = view.findViewById(R.id.editTextPhoneNum)
         editTextPassword = view.findViewById(R.id.editTextPassword)
+        mId = Settings.Secure.getString(activity?.contentResolver,Settings.Secure.ANDROID_ID)
+        val button3: Button = view.findViewById(R.id.button3)
+        button3.setOnClickListener {
+            fetchPackages()
+        }
+
+
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val button3: Button = view.findViewById(R.id.button3)
-
-
-
-
-        button3.setOnClickListener {
-            fetchPackages()
-            println("button")
-            val fragment = KaynakFragment()
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer2, fragment)
-                .addToBackStack(null)
-                .commit()
-
-
-
-        }
 
     }
     private fun fetchPackages() {
         val client = OkHttpClient()
         val phonenum = editTextPhoneNum.text.toString()
         val password = editTextPassword.text.toString()
-        val baseUrl = "https://airtvplayer.com/admin/api/register.php"
-        val brand = ""
-        val model = ""
-        val androidId = ""
-        val city = ""
-        val country_name = ""
-        val latitude = ""
-        val longitude = ""
-        val org  = ""
-        val registerurl = "$baseUrl?phonenum=$phonenum&brand=$brand&model=$model&androidid=$androidId"
+        val baseUrl = ""
+        val Model = Build.MODEL
+        val model = Model
+        val manufacturer = Build.MANUFACTURER
+        val brand = manufacturer
+        val registerurl = "$baseUrl?phonenum=$phonenum&brand=$brand&model=$model&androidid=$mId"
         if (baseUrl.isNotEmpty()){
             val request = Request.Builder()
                 .url(registerurl)
@@ -88,6 +74,8 @@ class LoginFragment : Fragment() {
                         }else{
                             println(phonenum)
                             println(password)
+                            Constants.phoneNumber = phonenum
+                            startActivity(Intent(context, MainActivity2::class.java))
 
                         }
                     }
@@ -97,11 +85,5 @@ class LoginFragment : Fragment() {
             println("url boş")
         }
     }
-
-
-
-
-
-
 
 }

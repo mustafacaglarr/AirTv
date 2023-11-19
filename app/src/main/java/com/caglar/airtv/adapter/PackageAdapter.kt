@@ -1,55 +1,77 @@
 package com.caglar.airtv.adapter
 
 import android.app.AlertDialog
-import android.media.MediaPlayer
-import android.media.browse.MediaBrowser
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
-import android.widget.MediaController
 import android.widget.TextView
-import android.widget.VideoView
-import androidx.navigation.NavDeepLinkRequest.Builder.Companion.fromUri
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.caglar.airtv.R
-import com.caglar.airtv.data.PackageData
-import com.google.android.exoplayer2.MediaItem.fromUri
-import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.source.MediaSource
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import com.google.android.exoplayer2.util.Util
+import com.caglar.airtv.models.PackageData
 
-class PackageAdapter : RecyclerView.Adapter<PackageAdapter.PackageViewHolder>() {
+
+class PackageAdapter : RecyclerView .Adapter<PackageAdapter.PackageViewHolder>() {
     private var packageList: List<PackageData> = emptyList()
+    var addClick = MutableLiveData<PackageData>()
+    var detailClick = MutableLiveData<PackageData>()
 
     inner class PackageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val packageNameTextView: TextView = itemView.findViewById(R.id.textView1)
         private val imageButton: ImageButton = itemView.findViewById(R.id.imageButton)
+        private val myImageButton: ImageButton = itemView.findViewById(R.id.myImageButton)
+        private val myImageButton2: ImageButton = itemView.findViewById(R.id.myImageButton2)
         fun bind(packageData: PackageData) {
-            packageNameTextView.text = packageData.packageName
-            imageButton.setOnClickListener {
-                println("pencere açılacak")
-                val videoUrl = packageData.preview
+            myImageButton.setOnClickListener {
+                addClick.postValue(packageData)
+                if (packageData.isPaidContent==true){
+                    AlertDialog()
 
-                // MediaPlayer ile videoyu oynatma
-                val mediaPlayer = MediaPlayer()
-                mediaPlayer.setDataSource(videoUrl)
-                mediaPlayer.prepare()
-                mediaPlayer.start()
-
-
-
+                }
             }
+            imageButton.setOnClickListener {
+                if (packageData.isPaired == true){
+                    detailClick.postValue(packageData)
 
-
+                }
+            }
+            packageNameTextView.text = packageData.packageName
+            if (packageData.isPaired==true){
+                println("a")
+                myImageButton.visibility = View.GONE
+                myImageButton2.visibility = View.VISIBLE
+            }else{
+                println("b")
+                myImageButton.visibility = View.VISIBLE
+                myImageButton2.visibility= View.GONE
+            }
             // Diğer öğeleri burada güncelleyeceğim
         }
+        private fun AlertDialog() {
+            val context = itemView.context
+            val alertDialogBuilder = AlertDialog.Builder(context)
+            val AlerDialogView = LayoutInflater.from(context).inflate(R.layout.popup, null)
+            val popupbutton:Button = AlerDialogView.findViewById(R.id.popupbutton)
+            val popupText:TextView = AlerDialogView.findViewById(R.id.popupText)
+            alertDialogBuilder.setView(AlerDialogView)
+            val alertDialog = alertDialogBuilder.create()
+            popupbutton.setOnClickListener {
+                val textFromPopup = popupText.text.toString()
+                alertDialog.dismiss()
+                println(textFromPopup)
+            }
 
+            alertDialog.show()
+        }
 
     }
+    fun setPackages(packages: List<PackageData>) {
+        packageList = packages
+
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PackageViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
@@ -64,7 +86,5 @@ class PackageAdapter : RecyclerView.Adapter<PackageAdapter.PackageViewHolder>() 
         return packageList.size
     }
 
-    fun setPackages(packages: List<PackageData>) {
-        packageList = packages
-    }
+
 }

@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/firstFragment">
+    app:startDestination="@id/kaynakFragment">
 
     <fragment
         android:id="@+id/firstFragment"
-        android:name="com.caglar.airtv.ui.FirstFragment"
+        android:name="com.caglar.airtv.ui.login.FirstFragment"
         android:label="fragment_first"
         tools:layout="@layout/fragment_first" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.caglar.airtv.ui.LoginFragment"
+        android:name="com.caglar.airtv.ui.login.LoginFragment"
         android:label="activity_main"
         tools:layout="@layout/activity_main" >
         <action
@@ -37,16 +37,19 @@
     </fragment>
     <fragment
         android:id="@+id/kaynakFragment"
-        android:name="com.caglar.airtv.ui.KaynakFragment"
+        android:name="com.caglar.airtv.ui.main.KaynakFragment"
         android:label="fragment_kaynak"
         tools:layout="@layout/fragment_kaynak" >
         <action
             android:id="@+id/action_kaynakFragment_to_aramaFragment"
             app:destination="@id/aramaFragment" />
+        <action
+            android:id="@+id/action_kaynakFragment_to_kaynakDetailFragment"
+            app:destination="@id/kaynakDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/aramaFragment"
-        android:name="com.caglar.airtv.ui.AramaFragment"
+        android:name="com.caglar.airtv.ui.main.AramaFragment"
         android:label="fragment_arama"
         tools:layout="@layout/fragment_arama" >
         <action
@@ -55,16 +58,25 @@
     </fragment>
     <fragment
         android:id="@+id/hesapFragment"
-        android:name="com.caglar.airtv.ui.HesapFragment"
+        android:name="com.caglar.airtv.ui.main.HesapFragment"
         android:label="fragment_hesap"
         tools:layout="@layout/fragment_hesap" />
     <fragment
         android:id="@+id/listeFragment"
-        android:name="com.caglar.airtv.ui.ListeFragment"
+        android:name="com.caglar.airtv.ui.main.ListeFragment"
         android:label="fragment_liste"
         tools:layout="@layout/fragment_liste" >
         <action
             android:id="@+id/action_listeFragment_to_hesapFragment"
             app:destination="@id/hesapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kaynakDetailFragment"
+        android:name="com.caglar.airtv.ui.main.KaynakDetailFragment"
+        android:label="fragment_kaynak_detail"
+        tools:layout="@layout/fragment_kaynak_detail" >
+        <action
+            android:id="@+id/action_kaynakDetailFragment_to_kaynakFragment"
+            app:destination="@id/kaynakFragment" />
     </fragment>
 </navigation>
