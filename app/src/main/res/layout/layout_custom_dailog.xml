@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    app:cardBackgroundColor="#00FFFFFF">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dialogRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="50dp"
+        android:background="#00000000">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ImageButton
+        android:background="#00FFFFFF"
+        android:id="@+id/closeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="35dp"
+
+        android:src="@drawable/ic_baseline_close"
+
+        />
+</androidx.cardview.widget.CardView>
